@@ -11,6 +11,9 @@ echo ".less' />\n";
 <script src='js/less.js'></script>
 </head>
 <body>
+<div id='theme'><a href='?<?php
+if (!($_GET["theme"])) echo "theme=dark";
+?>'>Change Theme</a></div>
 <h1>Glue</h1>
 <h2>Minimalistic Pastebin</h2>
 <hr />

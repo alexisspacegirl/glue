@@ -57,7 +57,7 @@ while ( list( $id, $content, $date ) = mysql_fetch_array($result) ) {
 
 // Pagination ====----
 if ($page == 0) {
-	echo  "<h4 id='pagination'><a id='back' href='?page=" . ceil($count / 5);
+	echo  "<h4 id='pagination'><a id='back' href='?page=" . (ceil($count / 5) - 1);
 	if ($_GET["theme"]) echo "&theme=" . $_GET["theme"];
 	echo "'>Back</a></h4>\n";
 } else {
