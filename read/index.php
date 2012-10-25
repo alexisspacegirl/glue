@@ -18,6 +18,10 @@ $begin = $end - 4; if ($begin < 1) $begin = 1; if ($end > $count) $end = $count;
 
 // Standard header stuff ====----
 echo "<!DOCTYPE html>\n<html>\n<head>\n<title>Reading Glue</title>\n".
+     "<link rel='stylesheet/less' href='../themes/";
+if ($_GET["theme"]) { echo $_GET["theme"]; } else { echo "basic"; }
+echo ".less' />\n".
+     "<script src='../js/less.js'></script>\n".
      "<script src='../js/jquery.js'></script>\n".
      "<script src='../js/markup.js'></script>\n".
      "<script>$(function(){ $('p').markup(); });</script>\n".
@@ -35,7 +39,9 @@ $result = mysql_query("SELECT * FROM glue WHERE id BETWEEN " . $begin . " AND " 
 while ( list( $id, $content, $date ) = mysql_fetch_array($result) ) {
 
 	// Link to eat ==--
-	echo "<h3><a href='../eat?id=" . $id . "'>" . $id . "</a></h3>\n";
+	echo "<h3><a href='../eat?id=" . $id;
+	if ($_GET["theme"]) echo "&theme=" . $_GET["theme"];
+	echo "'>" . $id . "</a></h3>\n";
 
 	// Date ==--
 	echo "<h4>" . $date . "</h4>\n";
@@ -50,11 +56,26 @@ while ( list( $id, $content, $date ) = mysql_fetch_array($result) ) {
 
 
 // Pagination ====----
-if ($page == 0) { echo  "<h4><a href='?page=" . ceil($count / 5) . "'>Back</a></h4>\n"; } else {
-if ($begin == 1) { if ($end != $count) echo "<h4><a href='?page=" . ($page + 1) . "'>Next</a></h4>\n";
-} else { if ($end == $count) { echo "<h4><a href='?page=" . ($page - 1) . "'>Back</a></h4>\n";
-} else { echo "<h4><a href='?page=" . ($page - 1) . "'>Back</a> &ndash; <a href='?page=" .
-($page + 1) . "'>Next</a></h4>\n";  } } }
+if ($page == 0) {
+	echo  "<h4 id='pagination'><a id='back' href='?page=" . ceil($count / 5);
+	if ($_GET["theme"]) echo "&theme=" . $_GET["theme"];
+	echo "'>Back</a></h4>\n";
+} else {
+	if ($begin == 1) {
+		if ($end != $count) { echo "<h4 id='pagination'><a id='next' href='?page=" . ($page + 1);
+		if ($_GET["theme"]) echo "&theme=" . $_GET["theme"];
+		echo "'>Next</a></h4>\n"; }
+	} else {
+		if ($end == $count) {
+			echo "<h4 id='pagination'><a id='back' href='?page=" . ($page - 1);
+			if ($_GET["theme"]) echo "&theme=" . $_GET["theme"];
+			echo "'>Back</a></h4>\n";
+		} else {
+			echo "<h4 id='pagination'><a id='back' href='?page=" . ($page - 1);
+			if ($_GET["theme"]) echo "&theme=" . $_GET["theme"];
+			echo "'>Back</a> &ndash; <a id='next' href='?page=" . ($page + 1);
+			if ($_GET["theme"]) echo "&theme=" . $_GET["theme"];
+			echo "'>Next</a></h4>\n"; } } }
 
 
 // Standard footer stuff ====----

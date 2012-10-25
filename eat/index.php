@@ -28,6 +28,9 @@ echo $content; }
 
 // Standard header stuff ====----
 echo "<!DOCTYPE html>\n<html>\n<head>\n<title>Eating Glue</title>\n".
+     "<link rel='stylesheet/less' href='../themes/";
+if ($_GET["theme"]) { echo $_GET["theme"]; } else { echo "basic"; }
+echo ".less' />\n<script src='../js/less.js'></script>\n".
      "<script src='../js/jquery.js'></script>\n".
      "<script src='../js/markup.js'></script>\n".
      "<script>$(function(){ $('p').markup(); });</script>\n".
@@ -44,7 +47,7 @@ $result = mysql_query("SELECT * FROM glue WHERE id = " . $id);
 while ( list( $theID, $content, $date ) = mysql_fetch_array($result) ) {
 
 	// Link to eat raw ==--
-	echo "<h3>" . $id . " - <a href='?id=" . $id . "&raw=true'>raw</a></h3>\n";
+	echo "<h3>" . $id . " &ndash; <a href='?id=" . $id . "&raw=true'>RAW</a></h3>\n";
 
 	// Date ==--
 	echo "<h4>" . $date . "</h4>\n";
@@ -59,9 +62,10 @@ while ( list( $theID, $content, $date ) = mysql_fetch_array($result) ) {
 
 
 // Pagination ====----
-if ($id == 1) { echo "<h4><a href='?id=" . ($id + 1) . "'>Next</a></h4>\n"; } else {
-if ($id == $count) { echo "<h4><a href='?id=" . ($id - 1) . "'>Back</a></h4>\n"; } else {
-echo "<h4><a href='?id=" . ($id - 1) . "'>Back</a> &ndash; <a href='?id=" . ($id + 1) . "'>Next</a></h4>\n"; } }
+if ($_GET["theme"]) { $theme = "&theme=" . $_GET["theme"]; } else { $theme = ""; }
+if ($id == 1) { echo "<h4 id='pagination'><a id='next' href='?id=" . ($id + 1) . $theme . "'>Next</a></h4>\n"; } else {
+if ($id == $count) { echo "<h4 id='pagination'><a id='back' href='?id=" . ($id - 1) . $theme . "'>Back</a></h4>\n"; } else {
+echo "<h4 id='pagination'><a id='back' href='?id=" . ($id - 1) . $theme . "'>Back</a> &ndash; <a id='next' href='?id=" . ($id + 1) . $theme . "'>Next</a></h4>\n"; } }
 
 
 // Standard footer stuff ====----

@@ -1,0 +1,87 @@
+@import url("http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic|Orbitron");
+
+body {
+	margin: 7em 9em 7em 8em;
+	padding-left: 2em;
+	border-left: 2px groove #aaa;
+
+	h1 {
+		font-family: "Orbitron", sans-serif;
+		font-weight: 400;
+		font-size: 28pt;
+		letter-spacing: 10pt;
+
+		margin: 0 0 5pt 0;
+
+		&:after {
+			content: "=-";
+		}
+	}
+
+	h2 {
+		font-family: "Orbitron", sans-serif;
+		font-weight: 400;
+		font-size: 16pt;
+
+		margin: 0 0 40pt 0;
+	}
+
+	h3 {
+		font-family: "Ubuntu Mono", monospace;
+		font-size: 14pt;
+		float: left;
+		margin: 0 5pt 0 0;
+		padding: 0;
+
+		a { text-decoration: none; }
+
+		&:after {
+			content: " –";
+		}
+	}
+
+	h4 {
+		font-family: "Ubuntu Mono", monospace;
+		font-size: 14pt;
+
+		&#pagination {
+			text-transform: lowercase;
+			font-weight: normal;
+			a {
+				text-decoration: none;
+				&#back:before { content: "‹ "; }
+				&#next:after { content: " ›"; }
+			}
+		}
+	}
+
+	hr {
+		margin: 20pt 0 18pt 0;
+		margin-right: 70%;
+		border-color: #aaa;
+	}
+
+	p {
+		font-family: "Ubuntu Mono", monospace;
+		font-size: 14pt;
+
+		a { text-decoration: none; }
+	}
+
+	textarea {
+		width: 100%;
+		margin: 0;
+		border: 1px solid #ddd;
+	}
+
+	input[type=submit] {
+		width: 100%;
+		margin: 0;
+		padding: 3pt;
+
+		border: 0;
+		background-color: #000;
+		color: #fff;
+		font-weight: bold;
+	}
+}
