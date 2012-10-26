@@ -51,7 +51,7 @@ while ( list( $theID, $content, $date ) = mysql_fetch_array($result) ) {
 
 	// Date ==--
 	include "../php/ago.php";
-	echo "<h4>" . ago($date) . "</h4>\n";
+	echo "<h4>$date UTC &ndash; " . ago($date) . "</h3>\n";
 
 	// Content ==--
 	$output = explode("\n", htmlentities($content));
