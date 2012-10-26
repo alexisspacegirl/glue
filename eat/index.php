@@ -50,7 +50,8 @@ while ( list( $theID, $content, $date ) = mysql_fetch_array($result) ) {
 	echo "<h3>" . $id . " &ndash; <a href='?id=" . $id . "&raw=true'>RAW</a></h3>\n";
 
 	// Date ==--
-	echo "<h4>" . $date . "</h4>\n";
+	include "../php/ago.php";
+	echo "<h4>" . ago($date) . "</h4>\n";
 
 	// Content ==--
 	$output = explode("\n", htmlentities($content));

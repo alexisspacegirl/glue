@@ -15,6 +15,7 @@ list($count) = mysql_fetch_array($count);
 $page = $_GET["page"]; if (!($page)) { $page = 0; $end = $count; } else { $end = $page * 5; }
 $begin = $end - 4; if ($begin < 1) $begin = 1; if ($end > $count) $end = $count;
 
+include "../php/ago.php";
 
 // Standard header stuff ====----
 echo "<!DOCTYPE html>\n<html>\n<head>\n<title>Reading Glue</title>\n".
@@ -44,7 +45,7 @@ while ( list( $id, $content, $date ) = mysql_fetch_array($result) ) {
 	echo "'>" . $id . "</a></h3>\n";
 
 	// Date ==--
-	echo "<h4>" . $date . "</h4>\n";
+	echo "<h4>" . ago($date) . "</h4>\n";
 
 	// Content ==--
 	$output = explode("\n", htmlentities($content));
