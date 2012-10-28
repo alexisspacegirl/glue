@@ -29,7 +29,8 @@ echo $content; }
 // Standard header stuff ====----
 echo "<!DOCTYPE html>\n<html>\n<head>\n<title>Eating Glue</title>\n".
      "<link rel='stylesheet/less' href='../themes/";
-if ($_GET["theme"]) { echo $_GET["theme"]; } else { echo "basic"; }
+if ($_GET["theme"]) { if (strlen($_GET["theme"]) <= 8) {
+echo $_GET["theme"]; } else { echo "basic"; } } else { echo "basic"; }
 echo ".less' />\n<script src='../js/less.js'></script>\n".
      "<script src='../js/jquery.js'></script>\n".
      "<script src='../js/markup.js'></script>\n".

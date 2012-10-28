@@ -4,7 +4,8 @@
 <title>Making Glue</title>
 <?php
 echo "<link rel='stylesheet/less' href='../themes/";
-if ($_GET["theme"]) { echo $_GET["theme"]; } else { echo "basic"; }
+if ($_GET["theme"]) { if (strlen($_GET["theme"]) <= 8) {
+echo $_GET["theme"]; } else { echo "basic"; } } else { echo "basic"; }
 echo ".less' />\n";
 ?>
 <script src='../js/less.js'></script>
